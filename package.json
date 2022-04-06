@@ -4,8 +4,12 @@
   "description": "an experimental online drawing application by students at the School of the Art Institute of Chicago.",
   "main": "server.js",
   "license": "GPL-3.0",
+  "scripts": {
+    "check-code-style": "standard ."
+  },
   "dependencies": {
     "axios": "^0.26.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "standard": "^16.0.4"
   }
 }
