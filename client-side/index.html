@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Artware Template</title>
+    <link rel="icon" href="images/app-icon.png">
+
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+
+    <nav>
+      <!-- menu items will get inserted here by artware framework -->
+    </nav>
+
+    <section id="tools">
+      <!-- brushes/tools will get inserted here by artware framework -->
+    </section>
+
+    <main>
+      <!-- canvas will get inserted here by artware framework -->
+    </main>
+
+    <script src="/js/artware.js"></script>
+    <script>
+      // ...........................................
+      // INSTANTIATE APP USING THE ARTWARE FRAMEWORK
+      // ...........................................
+      const app = new Artware({
+        // path to settings file containing app metadata
+        settings: '/js/settings.json',
+        // array of main menu items
+        menu: [
+          'File'
+        ],
+        // CSS query selectors for elements to place artware components in
+        elements: {
+          menu: 'nav',
+          tools: '#tools',
+          main: 'main'
+        }
+      })
+    </script>
+  </body>
+</html>

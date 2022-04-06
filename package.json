@@ -1,0 +1,11 @@
+{
+  "name": "net-artware",
+  "version": "3.0.0",
+  "description": "an experimental online drawing application by students at the School of the Art Institute of Chicago.",
+  "main": "server.js",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "express": "^4.16.4"
+  }
+}
