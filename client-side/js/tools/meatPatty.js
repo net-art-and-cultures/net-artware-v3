@@ -25,6 +25,9 @@ window.tools.meatPatty = {
           [102, 41, 0],
           [0, 0, 0]
         ]
+        // Declaring the texture image
+        const img = new Image()
+        img.src = '/images/meatPatty-texture.png'
         // blends the color given with the one after it
         function blendedColor (firstColor, bPercentage) {
           const newColor = [
@@ -65,6 +68,9 @@ window.tools.meatPatty = {
           app.ctx.fillStyle = blendedColor(baseColor, percentage)
           app.ctx.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2, true)
           app.ctx.fill()
+          // Draws the texture over the shape
+          app.ctx.drawImage(img, mouse.x - 50, mouse.y - 50)
+          app.ctx.globalCompositeOperation = 'source-over'
         }
         cook()
       }
