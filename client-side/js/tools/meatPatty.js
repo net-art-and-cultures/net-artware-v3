@@ -26,7 +26,7 @@ window.tools.meatPatty = {
           [0, 0, 0]
         ]
         // Declaring the texture image
-        const img = new Image()
+        const img = new window.Image()
         img.src = '/images/meatPatty-texture.png'
         // blends the color given with the one after it
         function blendedColor (firstColor, bPercentage) {
