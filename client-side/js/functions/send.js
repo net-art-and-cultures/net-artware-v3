@@ -18,12 +18,14 @@ window.functions.send = {
       },
       body: JSON.stringify({ dataURL })
     }
+    // adding new line to test
     // we'll use fetch to create that POST request to our server
     // sending it to the "/api/data-url" endpoint defined in the REST API
     const req = await window.fetch('/api/data-url', opts)
     // here we assume the REST API will respond with a JSON object
     // && we're logging that JSON object to the client-side's web console
     const res = await req.json()
+    console.log('from send: ')
     console.log(res)
   }
 }
