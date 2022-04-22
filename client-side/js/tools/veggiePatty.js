@@ -45,7 +45,7 @@ window.tools.veggiePatty = {
           const fps = 1000 / 30
           const timeout = setTimeout(cook, fps)
           // Stops the color changes when mouse is let go
-          if (window.tools.meatPatty.state.colorStop) {
+          if (window.tools.veggiePatty.state.colorStop) {
             clearTimeout(timeout)
           }
           // Creates a blend value
