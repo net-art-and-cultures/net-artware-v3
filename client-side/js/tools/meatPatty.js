@@ -6,7 +6,7 @@ window.tools.meatPatty = {
     selected: false,
     mousePressed: false,
     mousePosition: { x: null, y: null },
-    colorStop: false
+    colorStop: true
   },
   events: {
     mousedown: function (e) {
