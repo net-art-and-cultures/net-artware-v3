@@ -128,18 +128,6 @@ class Artware {
   createCanvas (main) {
     main = main || this.ele.main
     if (!main) return
-    // setup main mousemove listener (for handling tool state)
-    main.addEventListener('mousemove', (e) => {
-      const tool = this.getSelectedTool()
-      if (tool) {
-        main.state = tool.state
-      } else {
-        main.state = {
-          selected: false,
-          mousePressed: false
-        }
-      }
-    })
     // create canvas
     const style = window.getComputedStyle(main)
     const height = parseFloat(style.getPropertyValue('height')) || main.offsetHeight
@@ -186,8 +174,8 @@ class Artware {
     ctxCopy.drawImage(this.canvas, 0, 0)
     // resize canvas
     this.ctxSave()
-    this.width = width
-    this.height = height
+    this.canvas.width = width
+    this.canvas.height = height
     // scale and draw copy back onto canvas
     this.ctx.drawImage(copy, 0, 0, width, height)
     this.ctxRestore()
