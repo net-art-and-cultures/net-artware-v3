@@ -64,10 +64,20 @@ window.tools.meatPatty = {
           // Draws the patty shape
           e.ctx.beginPath()
           e.ctx.fillStyle = blendedColor(baseColor, percentage)
-          e.ctx.arc(e.mouse.x, e.mouse.y, 50, 0, Math.PI * 2, true)
+          e.ctx.arc(e.mouse.x, e.mouse.y, e.ctx.lineWidth, 0, Math.PI * 2, true)
           e.ctx.fill()
           // Draws the texture over the shape
-          e.ctx.drawImage(img, e.mouse.x - 50, e.mouse.y - 50)
+          e.ctx.drawImage(
+            // image source
+            img,
+            // x position
+            e.mouse.x - e.ctx.lineWidth,
+            // y position
+            e.mouse.y - e.ctx.lineWidth,
+            // width
+            e.ctx.lineWidth * 2,
+            // height
+            e.ctx.lineWidth * 2)
           e.ctx.globalCompositeOperation = 'source-over'
         }
         cook()
