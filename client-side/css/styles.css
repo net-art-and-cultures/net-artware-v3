@@ -60,6 +60,15 @@ nav > .sub-menu > div:hover {
 }
 
 /* •.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*• */
+/* options/ui styles         */
+/* •.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*• */
+
+#options {
+  margin: 10px;
+  border: 2px solid red;
+}
+
+/* •.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*• */
 /* canvas parent element styles */
 /* •.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*• */
 

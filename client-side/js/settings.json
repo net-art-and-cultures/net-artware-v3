@@ -10,5 +10,7 @@
     "veggiePatty"
   ],
   "filters": [],
-  "options": []
+  "options": [
+    "strokeWeight"
+  ]
 }

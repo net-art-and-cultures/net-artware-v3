@@ -12,7 +12,7 @@
   </head>
   <body>
 
-    <!-- hey Guang! edit this line -->
+    <!-- editttt -->
 
     <nav>
       <!-- menu items will get inserted here by artware framework -->
@@ -20,6 +20,10 @@
 
     <section id="tools">
       <!-- brushes/tools will get inserted here by artware framework -->
+    </section>
+
+    <section id="options">
+      <!-- options UI will get inserted here by artware framework -->
     </section>
 
     <main>
@@ -36,12 +40,14 @@
         settings: '/js/settings.json',
         // array of main menu items
         menu: [
-          'File'
+          'File',
+          'Options'
         ],
         // CSS query selectors for elements to place artware components in
         elements: {
           menu: 'nav',
           tools: '#tools',
+          options: '#options',
           main: 'main'
         }
       })
