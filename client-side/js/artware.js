@@ -335,7 +335,8 @@ class Artware {
     if (menu === 'Options' && this.ele.options) {
       menuItem.onclick = () => this.displayOptionUI(item)
     } else {
-      menuItem.onclick = () => item.run(this)
+      const e = { canvas: this.canvas, ctx: this.ctx, state: item.state || {} }
+      menuItem.onclick = () => item.run(e)
     }
     subMenu.appendChild(menuItem)
   }
@@ -345,7 +346,8 @@ class Artware {
     if (!this.ele.options) return
     // otherwise clear current option UI && add display this one instead
     opt = typeof opt === 'string' ? window.options[opt] : opt
-    const ele = opt.run(this)
+    const e = { canvas: this.canvas, ctx: this.ctx, state: opt.state || {} }
+    const ele = opt.run(e)
     this.ele.options.innerHTML = ''
     this.ele.options.appendChild(ele)
   }
