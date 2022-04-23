@@ -71,7 +71,11 @@ class Artware {
     if (!this.ele.tools) return
     const ele = this.ele.tools.querySelector('.selected')
     if (!ele) return
-    return { ele, tool: window.tools[ele.title] }
+    const name = ele.title
+    const obj = window.tools[name]
+    // const state = JSON.parse(JSON.stringify(obj.state))
+    const state = obj.state
+    return { ele, obj, name, state }
   }
 
   // ----------------------
@@ -126,9 +130,10 @@ class Artware {
     if (!main) return
     // setup main mousemove listener (for handling tool state)
     main.addEventListener('mousemove', (e) => {
-      const s = this.getSelectedTool()
-      if (s) main.state = s.tool.state
-      else {
+      const tool = this.getSelectedTool()
+      if (tool) {
+        main.state = tool.state
+      } else {
         main.state = {
           selected: false,
           mousePressed: false
@@ -207,13 +212,24 @@ class Artware {
     const script = document.createElement('script')
     script.onload = () => {
       const tool = window.tools[name]
-      // when the file loads, create listeners for it's events
-      const evs = tool.events
-      for (const e in evs) {
+      // create a callback function for event listener that
+      // overloads the event object with extra data
+      // and only runs for the currently selected tool
+      const cb = (e, func) => {
+        const tool = this.getSelectedTool()
+        e.state = tool ? tool.state : null
+        e.mouse = this.eventToMouse(e)
+        e.canvas = this.canvas
+        e.ctx = this.ctx
+        if (tool && name === tool.name) func(e)
+      }
+      // when the file loads, create listeners for all it's events
+      const funcs = tool.events
+      for (const eve in funcs) {
         if (this.ele.main) {
-          this.ele.main.addEventListener(e, evs[e])
+          this.ele.main.addEventListener(eve, (e) => cb(e, funcs[eve]))
         } else {
-          window.addEventListener(e, evs[e])
+          window.addEventListener(eve, (e) => cb(e, funcs[eve]))
         }
       }
       // then create icon for too bar
