@@ -1,4 +1,4 @@
-/* global app */
+/* global e */
 window.tools.veggiePatty = {
   name: 'meat patty',
   icon: '/images/veggiePatty-icon.png',
@@ -10,13 +10,12 @@ window.tools.veggiePatty = {
   },
   events: {
     mousedown: function (e) {
-      this.state.mousePressed = true
-      this.state.colorStop = false
+      e.state.mousePressed = true
+      e.state.colorStop = false
 
-      if (this.state.selected) {
-        const mouse = app.eventToMouse(e)
-        this.state.mousePosition.x = mouse.x
-        this.state.mousePosition.y = mouse.y
+      if (e.state.selected) {
+        e.state.mousePosition.x = e.mouse.x
+        e.state.mousePosition.y = e.mouse.y
         // defines the colors to blend through
         // red, pink, brown and black
         const colors = [
@@ -64,21 +63,21 @@ window.tools.veggiePatty = {
           // Seting 'percentage' again to prevent flickering
           percentage = beat * 0.02
           // Draws the patty shape
-          app.ctx.beginPath()
-          app.ctx.fillStyle = blendedColor(baseColor, percentage)
-          app.ctx.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2, true)
-          app.ctx.fill()
+          e.ctx.beginPath()
+          e.ctx.fillStyle = blendedColor(baseColor, percentage)
+          e.ctx.arc(e.mouse.x, e.mouse.y, 50, 0, Math.PI * 2, true)
+          e.ctx.fill()
           // Draws the texture over the shape
-          app.ctx.drawImage(img, mouse.x - 50, mouse.y - 50)
-          app.ctx.globalCompositeOperation = 'source-over'
+          e.ctx.drawImage(img, e.mouse.x - 50, e.mouse.y - 50)
+          e.ctx.globalCompositeOperation = 'source-over'
         }
         cook()
       }
     },
-    mouseup: function () {
-      this.state.mousePressed = false
-      if (this.state.selected) {
-        this.state.colorStop = true
+    mouseup: function (e) {
+      e.state.mousePressed = false
+      if (e.state.selected) {
+        e.state.colorStop = true
       }
     }
   }
