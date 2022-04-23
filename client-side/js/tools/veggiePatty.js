@@ -1,4 +1,3 @@
-/* global e */
 window.tools.veggiePatty = {
   name: 'meat patty',
   icon: '/images/veggiePatty-icon.png',

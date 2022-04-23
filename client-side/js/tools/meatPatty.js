@@ -1,4 +1,3 @@
-/* global app */
 window.tools.meatPatty = {
   name: 'meat patty',
   icon: '/images/meatPatty-icon.png',
