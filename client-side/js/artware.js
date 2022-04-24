@@ -98,7 +98,7 @@ class Artware {
     // load function js file for each function name in the settings file
     data.functions.forEach(f => this.loadMenuModule('functions', f))
     // load option js file for each option name in the settings file
-    data.options.forEach(o => this.loadMenuModule('options', o))
+    data.options.forEach(o => this.loadOption(o))
   }
 
   moduleLoaded (type, name, callback) {
@@ -116,7 +116,7 @@ class Artware {
         this.loading.order[m].forEach(n => getObj(m, n).callback())
       })
       // display first option module in the list be default
-      this.displayOptionUI(this.loading.order.options[0])
+      // this.displayOptionUI(this.loading.order.options[0])
     }
   }
 
@@ -324,6 +324,16 @@ class Artware {
     document.body.appendChild(script)
   }
 
+  loadOption (name) {
+    const script = document.createElement('script')
+    script.onload = () => {
+      const option = window.options[name]
+      this.moduleLoaded('options', name, () => this.displayOptionUI(option))
+    }
+    script.src = `/js/options/${name}.js`
+    document.body.appendChild(script)
+  }
+
   addMenuItem (menu, item) {
     // if we dont't have an element to put the menu item in, then skip this
     if (!this.ele.menu) return
@@ -348,7 +358,7 @@ class Artware {
     opt = typeof opt === 'string' ? window.options[opt] : opt
     const e = { canvas: this.canvas, ctx: this.ctx, state: opt.state || {} }
     const ele = opt.run(e)
-    this.ele.options.innerHTML = ''
+    // this.ele.options.innerHTML = ''
     this.ele.options.appendChild(ele)
   }
 }

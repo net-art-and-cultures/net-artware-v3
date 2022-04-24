@@ -8,11 +8,12 @@ window.options.colorPallet = {
           display: block;
           grid-template-columns: repeat(1, 1fr);
           gap: 5px;
+          padding: 10px;
         }
-        input {
+        input[type="button"] {
           width: 25px;
           height: 25px;
-          margin: 5px 0 0 5px;
+          margin: 0 0 0 5px;
           border: 2px solid black;
           border-radius: 50%;
         }
