@@ -5,8 +5,9 @@ window.options.colorPallet = {
     element.innerHTML = `
       <style>
         .pallet {
-          display: block;
-          grid-template-columns: repeat(1, 1fr);
+          position: relative;
+          bottom: 7px;
+          grid-template-columns: repeat(5, 1fr);
           gap: 5px;
           padding: 10px;
         }
@@ -32,7 +33,7 @@ window.options.colorPallet = {
         #pink {background-color: rgb(255, 89, 177);}
       </style>
 
-      <div class="pallet">
+      <div class="pallet" style="display: grid;">
         <input type="button" id="white">
         <input type="button" id="black">
         <input type="button" id="red">

@@ -12,6 +12,7 @@
   "filters": [],
   "options": [
     "strokeWeight",
-    "colorPallet"
+    "colorPallet",
+    "colorPicker"
   ]
 }

@@ -5,6 +5,8 @@ window.options.strokeWeight = {
     ele.innerHTML = `
       <style>
         .pencil-options {
+          position: relative;
+          top: 4px;
           padding: 10px;
         }
       </style>
