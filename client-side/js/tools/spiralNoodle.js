@@ -30,10 +30,9 @@ window.tools.spiralNoodle = {
           e.state.prevMouse = { x: e.mouse.x, y: e.mouse.y }
         }
         // finds the distance between mouse cords and the previous cords
-        let d1 = Math.sqrt(
-          e.mouse.x - e.state.prevMouse.x,
-          e.mouse.y - e.state.prevMouse.y
-        )
+        const a = e.mouse.x - e.state.prevMouse.x
+        const b = e.mouse.y - e.state.prevMouse.y
+        let d1 = Math.sqrt((a * a) + (b * b))
         if (isNaN(d1)) {
           d1 = Math.sqrt(
             e.state.prevMouse.x - e.mouse.x,
@@ -41,7 +40,7 @@ window.tools.spiralNoodle = {
           )
         }
         console.log(d1)
-        if (d1 > 5) {
+        if (d1 > 10) {
           console.log(e.state.getPrevMouse)
           // finds our first slope
           const slope = (e.mouse.x - e.state.prevMouse.x) / (e.mouse.y - e.state.prevMouse.y)
@@ -54,10 +53,10 @@ window.tools.spiralNoodle = {
           }
           // finds two points a distance away from mid point using
           // the perpendicular slope.
-          const d2 = 3
+          const d2 = 5
           const perpPoint1 = {
-            x: ((d2 / 2) * (1 / (Math.sqrt(1 + (perpSlope * perpSlope))))) + midPoint.x,
-            y: ((d2 / 2) * (perpSlope / (Math.sqrt(1 + (perpSlope * perpSlope))))) + midPoint.y,
+            x: ((d2) * (1 / (Math.sqrt(1 + (perpSlope * perpSlope))))) + midPoint.x,
+            y: ((d2) * (perpSlope / (Math.sqrt(1 + (perpSlope * perpSlope))))) + midPoint.y,
             subPoint1: {
               x: null,
               y: null
@@ -68,16 +67,16 @@ window.tools.spiralNoodle = {
             }
           }
           perpPoint1.subPoint1 = {
-            x: ((d2 / 2) * (1 / (Math.sqrt(1 + (slope * slope))))) + perpPoint1.x,
-            y: ((d2 / 2) * (slope / (Math.sqrt(1 + (slope * slope))))) + perpPoint1.y
+            x: ((d2) * (1 / (Math.sqrt(1 + (slope * slope))))) + perpPoint1.x,
+            y: ((d2) * (slope / (Math.sqrt(1 + (slope * slope))))) + perpPoint1.y
           }
           perpPoint1.subPoint2 = {
-            x: ((-d2 / 2) * (1 / (Math.sqrt(1 + (slope * slope))))) + perpPoint1.x,
-            y: ((-d2 / 2) * (slope / (Math.sqrt(1 + (slope * slope))))) + perpPoint1.y
+            x: ((-d2) * (1 / (Math.sqrt(1 + (slope * slope))))) + perpPoint1.x,
+            y: ((-d2) * (slope / (Math.sqrt(1 + (slope * slope))))) + perpPoint1.y
           }
           const perpPoint2 = {
-            x: ((-d2 / 2) * (1 / (Math.sqrt(1 + (perpSlope * perpSlope))))) + midPoint.x,
-            y: ((-d2 / 2) * (perpSlope / (Math.sqrt(1 + (perpSlope * perpSlope))))) + midPoint.y,
+            x: ((-d2) * (1 / (Math.sqrt(1 + (perpSlope * perpSlope))))) + midPoint.x,
+            y: ((-d2) * (perpSlope / (Math.sqrt(1 + (perpSlope * perpSlope))))) + midPoint.y,
             subPoint1: {
               x: null,
               y: null
@@ -88,12 +87,12 @@ window.tools.spiralNoodle = {
             }
           }
           perpPoint2.subPoint1 = {
-            x: ((d2 / 2) * (1 / (Math.sqrt(1 + (slope * slope))))) + perpPoint2.x,
-            y: ((d2 / 2) * (slope / (Math.sqrt(1 + (slope * slope))))) + perpPoint2.y
+            x: ((d2) * (1 / (Math.sqrt(1 + (slope * slope))))) + perpPoint2.x,
+            y: ((d2) * (slope / (Math.sqrt(1 + (slope * slope))))) + perpPoint2.y
           }
           perpPoint2.subPoint2 = {
-            x: ((-d2 / 2) * (1 / (Math.sqrt(1 + (slope * slope))))) + perpPoint2.x,
-            y: ((-d2 / 2) * (slope / (Math.sqrt(1 + (slope * slope))))) + perpPoint2.y
+            x: ((-d2) * (1 / (Math.sqrt(1 + (slope * slope))))) + perpPoint2.x,
+            y: ((-d2) * (slope / (Math.sqrt(1 + (slope * slope))))) + perpPoint2.y
           }
           console.log(e.state.prevMouse,
             `Current mouse = {${e.mouse.x}, ${e.mouse.y}}`,
@@ -101,6 +100,29 @@ window.tools.spiralNoodle = {
             perpPoint1,
             perpPoint2
           )
+          // now that we have all of the points, we can start drawing curves
+          // the spine
+          e.ctx.strokeStyle = 'rgb(227, 190, 109)'
+          e.ctx.beginPath()
+          e.ctx.moveTo(e.state.prevMouse.x, e.state.prevMouse.y)
+          e.ctx.lineTo(e.mouse.x, e.mouse.y)
+          e.ctx.stroke()
+          // the spiral
+          e.ctx.strokeStyle = 'rgb(232, 221, 88)'
+          e.ctx.beginPath()
+          e.ctx.moveTo(perpPoint1.subPoint2.x, perpPoint1.subPoint2.y)
+          e.ctx.bezierCurveTo(
+            perpPoint1.subPoint2.x, perpPoint1.subPoint2.y,
+            perpPoint1.subPoint1.x, perpPoint1.subPoint1.y,
+            midPoint.x, midPoint.y
+          )
+          e.ctx.bezierCurveTo(
+            midPoint.x, midPoint.y,
+            perpPoint2.subPoint2.x, perpPoint2.subPoint2.y,
+            perpPoint2.subPoint1.x, perpPoint2.subPoint1.y
+          )
+          e.ctx.stroke()
+          // sets current mouse cords as previous mouse cords.
           e.state.getPrevMouse = true
         }
         // draw a line
