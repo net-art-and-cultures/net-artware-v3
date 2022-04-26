@@ -33,14 +33,8 @@ window.tools.spiralNoodle = {
         const a = e.mouse.x - e.state.prevMouse.x
         const b = e.mouse.y - e.state.prevMouse.y
         let d1 = Math.sqrt((a * a) + (b * b))
-        if (isNaN(d1)) {
-          d1 = Math.sqrt(
-            e.state.prevMouse.x - e.mouse.x,
-            e.state.prevMouse.y - e.mouse.y
-          )
-        }
         console.log(d1)
-        if (d1 > 10) {
+        if (d1 > 20) {
           console.log(e.state.getPrevMouse)
           // finds our first slope
           const slope = (e.mouse.x - e.state.prevMouse.x) / (e.mouse.y - e.state.prevMouse.y)
@@ -53,10 +47,14 @@ window.tools.spiralNoodle = {
           }
           // finds two points a distance away from mid point using
           // the perpendicular slope.
-          const d2 = 5
+          const d2 = 10
+          const dx = (d2 / Math.sqrt(1 + (slope * slope)))
+          const dy = slope * dx
+          const pdx = (d2 / Math.sqrt(1 + (perpSlope * perpSlope)))
+          const pdy = perpSlope * pdx
           const perpPoint1 = {
-            x: ((d2) * (1 / (Math.sqrt(1 + (perpSlope * perpSlope))))) + midPoint.x,
-            y: ((d2) * (perpSlope / (Math.sqrt(1 + (perpSlope * perpSlope))))) + midPoint.y,
+            x: pdx + midPoint.x,
+            y: pdy + midPoint.y,
             subPoint1: {
               x: null,
               y: null
@@ -67,16 +65,16 @@ window.tools.spiralNoodle = {
             }
           }
           perpPoint1.subPoint1 = {
-            x: ((d2) * (1 / (Math.sqrt(1 + (slope * slope))))) + perpPoint1.x,
-            y: ((d2) * (slope / (Math.sqrt(1 + (slope * slope))))) + perpPoint1.y
+            x: dx + perpPoint1.x,
+            y: dy + perpPoint1.y
           }
           perpPoint1.subPoint2 = {
-            x: ((-d2) * (1 / (Math.sqrt(1 + (slope * slope))))) + perpPoint1.x,
-            y: ((-d2) * (slope / (Math.sqrt(1 + (slope * slope))))) + perpPoint1.y
+            x: -dx + perpPoint1.x,
+            y: -dy + perpPoint1.y
           }
           const perpPoint2 = {
-            x: ((-d2) * (1 / (Math.sqrt(1 + (perpSlope * perpSlope))))) + midPoint.x,
-            y: ((-d2) * (perpSlope / (Math.sqrt(1 + (perpSlope * perpSlope))))) + midPoint.y,
+            x: -pdx + midPoint.x,
+            y: -pdy + midPoint.y,
             subPoint1: {
               x: null,
               y: null
@@ -87,15 +85,17 @@ window.tools.spiralNoodle = {
             }
           }
           perpPoint2.subPoint1 = {
-            x: ((d2) * (1 / (Math.sqrt(1 + (slope * slope))))) + perpPoint2.x,
-            y: ((d2) * (slope / (Math.sqrt(1 + (slope * slope))))) + perpPoint2.y
+            x: dx + perpPoint2.x,
+            y: dy + perpPoint2.y
           }
           perpPoint2.subPoint2 = {
-            x: ((-d2) * (1 / (Math.sqrt(1 + (slope * slope))))) + perpPoint2.x,
-            y: ((-d2) * (slope / (Math.sqrt(1 + (slope * slope))))) + perpPoint2.y
+            x: -dx + perpPoint2.x,
+            y: -dy + perpPoint2.y
           }
           console.log(e.state.prevMouse,
             `Current mouse = {${e.mouse.x}, ${e.mouse.y}}`,
+            slope,
+            perpSlope,
             midPoint,
             perpPoint1,
             perpPoint2
@@ -113,12 +113,12 @@ window.tools.spiralNoodle = {
           e.ctx.moveTo(perpPoint1.subPoint2.x, perpPoint1.subPoint2.y)
           e.ctx.bezierCurveTo(
             perpPoint1.subPoint2.x, perpPoint1.subPoint2.y,
-            perpPoint1.subPoint1.x, perpPoint1.subPoint1.y,
+            perpPoint1.x, perpPoint1.y,
             midPoint.x, midPoint.y
           )
           e.ctx.bezierCurveTo(
             midPoint.x, midPoint.y,
-            perpPoint2.subPoint2.x, perpPoint2.subPoint2.y,
+            perpPoint2.x, perpPoint2.y,
             perpPoint2.subPoint1.x, perpPoint2.subPoint1.y
           )
           e.ctx.stroke()
