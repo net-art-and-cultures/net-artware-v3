@@ -23,6 +23,7 @@ window.options.colorPicker = {
     colorPicker.addEventListener('change', updateAll, false)
 
     function updateAll (event) {
+      // Converts the Hex code from the input to RGB for the ctx
       const hexWithHash = colorPicker.value.slice(1)
       const aRgbHex = hexWithHash.match(/.{1,2}/g)
       const aRgb = [
@@ -34,9 +35,6 @@ window.options.colorPicker = {
 
       e.ctx.fillStyle = rgbString
       e.ctx.strokeStyle = rgbString
-      console.log(hexWithHash)
-      console.log(aRgbHex)
-      console.log(aRgb)
     }
     return ele
   }

@@ -6,7 +6,7 @@ window.options.strokeWeight = {
       <style>
         .pencil-options {
           position: relative;
-          top: 4px;
+          top: 2px;
           padding: 10px;
         }
       </style>
