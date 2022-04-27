@@ -67,6 +67,9 @@ nav > .sub-menu > div:hover {
   margin: 10px;
   border: 2px solid red;
 }
+#options div {
+  display: inline-block;
+}
 
 /* •.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*• */
 /* canvas parent element styles */

@@ -7,11 +7,13 @@
   "tools": [
     "pencil",
     "meatPatty",
-    "veggiePatty"
+    "veggiePatty",
+    "spiralNoodle"
   ],
   "filters": [],
   "options": [
     "strokeWeight",
-    "colorPallet"
+    "colorPallet",
+    "colorPicker"
   ]
 }
