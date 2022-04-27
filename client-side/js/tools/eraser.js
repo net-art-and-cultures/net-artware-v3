@@ -1,7 +1,6 @@
-/* global app */
 window.tools.eraser = {
   name: 'eraser',
-  icon: '/images/eraser-icon.png',
+  icon: '/images/eraser.png',
   state: {
     selected: false,
     mousePressed: false
@@ -20,12 +19,12 @@ window.tools.eraser = {
         const mouse = e.app.eventToMouse(e)
         const px = e.state.prevMouse.x || e.mouse.x
         const py = e.state.prevMouse.y || e.mouse.y
-        e.app.ctx.setStrokeColor(0, 0, 0, 0)
-        e.app.ctx.beginPath()
-        e.app.ctx.moveTo(mouse.x, mouse.y)
-        e.app.ctx.lineTo(px, py)
-        e.app.ctx.closePath()
-        e.app.ctx.stroke()
+        e.ctx.setStrokeColor(0, 0, 0, 0)
+        e.ctx.beginPath()
+        e.ctx.moveTo(mouse.x, mouse.y)
+        e.ctx.lineTo(px, py)
+        e.ctx.closePath()
+        e.ctx.stroke()
       }
     }
   }

@@ -2,12 +2,15 @@
   "version": 1.0,
   "functions": [
     "export",
-    "send"
+    "send",
+    "clear"
   ],
   "tools": [
     "pencil",
     "eraser",
-    "ketchup"
+    "ketchup",
+    "mustard",
+    "water"
   ],
   "filters": [],
   "options": []
