@@ -8,5 +8,7 @@
     "pencil"
   ],
   "filters": [],
-  "options": []
+  "options": [
+    "strokeWeight"
+  ]
 }
