@@ -34,7 +34,7 @@ window.tools.spiralNoodle = {
         const b = e.mouse.y - e.state.prevMouse.y
         let d1 = Math.sqrt((a * a) + (b * b))
         console.log(d1)
-        if (d1 > 20) {
+        if (d1 > 15) {
           console.log(e.state.getPrevMouse)
           // finds our first slope
           const slope = (e.mouse.x - e.state.prevMouse.x) / (e.mouse.y - e.state.prevMouse.y)
@@ -47,7 +47,7 @@ window.tools.spiralNoodle = {
           }
           // finds two points a distance away from mid point using
           // the perpendicular slope.
-          const d2 = 10
+          const d2 = 7
           const dx = (d2 / Math.sqrt(1 + (slope * slope)))
           const dy = slope * dx
           const pdx = (d2 / Math.sqrt(1 + (perpSlope * perpSlope)))
