@@ -21,6 +21,8 @@ router.get('/api/random-dog', async (req, res) => {
   }
 })
 
+const outputs = [] // where food predictions will go
+
 router.post('/api/data-url', async (req, res) => {
   // we can get access to the image data sent by the client via: req.body.dataURL
   // the dataURL is all the pixel data from the canvas encoded in "base64"
@@ -47,11 +49,12 @@ router.post('/api/data-url', async (req, res) => {
         console.log('Received failed status: ' + response.status.description + '\n' + response.status.details)
         return
       }
-
       console.log('Predicted concepts, with confidence values:')
       for (const c of response.outputs[0].data.concepts) {
         console.log(c.name + ': ' + c.value)
+        outputs.push(c.name)
       }
+      console.log(outputs)
     }
   )
 
@@ -59,5 +62,18 @@ router.post('/api/data-url', async (req, res) => {
   // ...like this...
   res.json({ status: 'success' })
 })
+
+// search for recipies with spoontacular API
+// const spoonAPI = '756c19d994a3497a82093e3b4bbe91fe'
+// const reqURL = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients='
+// const req = { method: 'GET' }
+// fetch(reqURL, req)
+
+// for (const x of outputs) {
+//   const newReq = reqURL + outputs[x] + '},'
+//   reqURL = newReq
+// }
+// console.log(reqURL)
+// const recipies = get('https://api.spoonacular.com/recipes/findByIngredients=${},+${},+${}&number=2&limitLicense=true')
 
 module.exports = router
