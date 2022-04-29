@@ -4,7 +4,7 @@ window.tools.water = {
   state: {
     selected: false,
     mousePressed: false,
-    size: 15
+    drops: 15
   },
 
   events: {
@@ -13,21 +13,21 @@ window.tools.water = {
     },
     mouseup: function (e) {
       e.state.mousePressed = false
-      e.state.size += 3
+      e.state.drops = Math.random() * 10 + 5
     },
     mousemove: function (e) {
       if (e.state.selected && e.state.mousePressed) {
         // const mouse = e.app.eventToMouse(e)
-        const px = e.state.prevMouse.x || e.mouse.x
-        const py = e.state.prevMouse.y || e.mouse.y
-        const radius = e.state.size
-        e.ctx.strokeStyle = 'blue'
-        e.ctx.beginPath()
-        e.ctx.arc(py, px, radius, radius - 10, Math.pi, 90, Math.pi)
-        e.ctx.fillStyle = 'blue'
-        e.ctx.fill()
-        e.ctx.closePath()
-        e.ctx.stroke()
+        for (let i = 0; i < e.state.drops; i++) {
+          const radius = Math.random() * 10 + 5
+          const x = e.mouse.x + (Math.random() * 20 - 10)
+          const y = e.mouse.y + (Math.random() * 20 - 10)
+          e.ctx.beginPath()
+          e.ctx.arc(x, y, radius, radius - 10, Math.PI, 90, Math.PI)
+          e.ctx.fillStyle = 'rgba(0, 0, 255, 0.5)'
+          e.ctx.fill()
+          e.ctx.closePath()
+        }
       }
     }
   }

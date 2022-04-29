@@ -1,6 +1,6 @@
 window.functions.clear = {
   name: 'clear',
-  type: 'clear',
+  type: 'File',
   run: function (e) {
     const canvas = e.document.getElementById('canvas')
     const ctx = e.canvas.getContext('2d')
