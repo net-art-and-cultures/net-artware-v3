@@ -54,7 +54,6 @@ router.post('/api/data-url', async (req, res) => {
         console.log(c.name + ': ' + c.value)
         outputs.push(c.name)
       }
-      console.log(outputs)
     }
   )
 
@@ -64,16 +63,16 @@ router.post('/api/data-url', async (req, res) => {
 })
 
 // search for recipies with spoontacular API
-// const spoonAPI = '756c19d994a3497a82093e3b4bbe91fe'
-// const reqURL = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients='
-// const req = { method: 'GET' }
-// fetch(reqURL, req)
 
-// for (const x of outputs) {
-//   const newReq = reqURL + outputs[x] + '},'
-//   reqURL = newReq
-// }
-// console.log(reqURL)
-// const recipies = get('https://api.spoonacular.com/recipes/findByIngredients=${},+${},+${}&number=2&limitLicense=true')
+let reqURL = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients='
+console.log(outputs)
+for (const x of outputs) {
+  const newReq = reqURL + outputs[x] + '},'
+  reqURL = newReq
+}
+console.log(reqURL)
+reqURL = reqURL + '&number=2&apiKey=756c19d994a3497a82093e3b4bbe91fe'
+
+axios.get(reqURL) // is this the right way to do it????
 
 module.exports = router
