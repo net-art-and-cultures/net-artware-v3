@@ -5,10 +5,13 @@
     "send"
   ],
   "tools": [
-    "pencil"
+    "pencil",
+    "meatPatty",
+    "veggiePatty"
   ],
   "filters": [],
   "options": [
-    "strokeWeight"
+    "strokeWeight",
+    "colorPallet"
   ]
 }
