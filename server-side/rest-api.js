@@ -6,6 +6,7 @@ const { ClarifaiStub, grpc } = require('clarifai-nodejs-grpc')
 const stub = ClarifaiStub.grpc()
 const metadata = new grpc.Metadata() // used to authenticate
 metadata.set('authorization', 'Key d9c28c50aab0499cb6c8c413b3f264d4') // API key from emris' Clarafai acct food-test application
+const apiKey = '756c19d994a3497a82093e3b4bbe91fe' // Spoontacular API key
 
 router.use(bodyParser.json())
 
@@ -24,7 +25,7 @@ router.post('/api/data-url', async (req, res) => {
     inputs: [{ data: { image: { base64: canvas } } }]
   } // image data from canvas encoded in base64
 
-  function createSpoonURL (ingredients, num, apiKey) {
+  function createSpoonURL (ingredients, num) {
     let url = 'https://api.spoonacular.com/recipes/findByIngredients'
     url += `?ingredients=${ingredients.join(',+')}`
     url += `&number=${num}`
@@ -33,12 +34,17 @@ router.post('/api/data-url', async (req, res) => {
   }
 
   async function getRecipies (ingredients, numRecipies) {
-    const apiKey = '756c19d994a3497a82093e3b4bbe91fe' // Spoontacular API key
-    const recURL = createSpoonURL(ingredients, numRecipies, apiKey)
-    console.log(recURL)
+    const recURL = createSpoonURL(ingredients, numRecipies)
+    // console.log(recURL)
     // I need to only add a couple of ingredients to the request url
     const json = await axios.get(recURL)
     return json // return recipies
+  }
+
+  async function getRecipeByID (id) {
+    const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`
+    const json = await axios.get(url)
+    return json
   }
 
   async function getIngredients (err, response) {
@@ -63,8 +69,15 @@ router.post('/api/data-url', async (req, res) => {
 
     // then get recipies
     const rec = await getRecipies(outputs, 2)
+
+    for (let i = 0; i < rec.data.length; i++) {
+      const recID = await getRecipeByID(rec.data[i].id)
+      rec.data[i].sourceURL = recID.data.sourceUrl
+    }
+    console.log(rec.data)
+
     // console.log(json)
-    res.json({ status: 'success', data: rec })
+    res.json({ status: 'success', data: rec.data })
   }
 
   stub.PostModelOutputs(clarafaiData, metadata, getIngredients)// https://github.com/Clarifai/clarifai-nodejs-grpc
