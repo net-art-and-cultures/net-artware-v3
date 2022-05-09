@@ -82,7 +82,7 @@ main {
 /* recipie display styles */
 /* •.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*• */
 
-#container {
+.container {
   display: flex;
   margin-left: 10%;
   align-items: center;
@@ -91,11 +91,11 @@ main {
   border: 2px solid purple;
 }
 
-#imgDiv {
+.imgDiv {
   flex-basis: 40%;
 }
 
-#textDiv {
+.textDiv {
   font-size: 22px;
   padding-left: 20px;
 }
