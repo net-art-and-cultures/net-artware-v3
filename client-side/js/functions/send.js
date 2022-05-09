@@ -26,5 +26,12 @@ window.functions.send = {
     const res = await req.json()
     console.log('from send: ')
     console.log(res)
+
+    // creating element to add to document
+    const tag = document.createElement('p')
+    const text = document.createTextNode('Test')
+    tag.appendChild(text)
+    const recipeDiv = document.getElementById('recipes')
+    recipeDiv.append(tag)
   }
 }
