@@ -27,11 +27,29 @@ window.functions.send = {
     console.log('from send: ')
     console.log(res)
 
-    // creating element to add to document
-    const tag = document.createElement('p')
-    const text = document.createTextNode('Test')
-    tag.appendChild(text)
-    const recipeDiv = document.getElementById('recipes')
-    recipeDiv.append(tag)
+    // creating recipie element to add to document
+    const main = document.createElement('div')
+    for (let i = 0; i < res.data.length; i++) {
+      const imgDiv = document.createElement('div')
+      const img = document.createElement('img')
+      const textDiv = document.createElement('div')
+      const title = document.createElement('a')
+      main.classList.add('container')
+      img.classList.add('imgDiv')
+      textDiv.classList.add('textDiv')
+
+      // adding content to elmts
+      img.src = res.data[i].image
+      imgDiv.appendChild(img)
+      const linkText = document.createTextNode(res.data[i].title)
+      title.appendChild(linkText)
+      title.title = res.data[i].title
+      title.href = res.data[i].sourceURL
+      textDiv.appendChild(title)
+      main.appendChild(imgDiv)
+      main.appendChild(textDiv)
+      const recipeDiv = document.getElementById('recipes')
+      recipeDiv.append(main)
+    }
   }
 }
