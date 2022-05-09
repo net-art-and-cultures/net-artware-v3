@@ -65,7 +65,6 @@ router.post('/api/data-url', async (req, res) => {
       console.log(c.name + ': ' + c.value)
       if (c.value > 0.8) { outputs.push(c.name) }
     }
-    console.log(outputs)
 
     // then get recipies
     const rec = await getRecipies(outputs, 2)
@@ -74,9 +73,7 @@ router.post('/api/data-url', async (req, res) => {
       const recID = await getRecipeByID(rec.data[i].id)
       rec.data[i].sourceURL = recID.data.sourceUrl
     }
-    console.log(rec.data)
 
-    // console.log(json)
     res.json({ status: 'success', data: rec.data })
   }
 
