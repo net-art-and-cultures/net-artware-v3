@@ -80,3 +80,25 @@ main {
   border: 2px solid green;
   height: 50vh;
 }
+
+/* •.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*• */
+/* recipie display styles */
+/* •.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*• */
+
+.container {
+  display: flex;
+  margin-left: 10%;
+  align-items: center;
+  justify-content: center; max-width: 70%;
+  margin: 10px;
+  border: 2px solid purple;
+}
+
+.imgDiv {
+  flex-basis: 40%;
+}
+
+.textDiv {
+  font-size: 22px;
+  padding-left: 20px;
+}

@@ -18,83 +18,45 @@ window.options.colorPallet = {
           border: 2px solid black;
           border-radius: 50%;
         }
-        input:hover {
+        input[type="button"]:hover {
           border-color: grey;
         }
-        #white {background-color: white;}
-        #black {background-color: black;}
-        #red {background-color: rgb(255, 0, 0);}
-        #orange {background-color: rgb(255, 111, 0);}
-        #yellow {background-color: rgb(255, 247, 0);}
-        #green {background-color: rgb(53, 189, 22);}
-        #cyan {background-color: rgb(0, 255, 212);}
-        #blue {background-color: rgb(0, 145, 255);}
-        #purple {background-color: rgb(187, 0, 255);}
-        #pink {background-color: rgb(255, 89, 177);}
+
       </style>
 
-      <div class="pallet" style="display: grid;">
-        <input type="button" id="white">
-        <input type="button" id="black">
-        <input type="button" id="red">
-        <input type="button" id="orange">
-        <input type="button" id="yellow">
-        <input type="button" id="green">
-        <input type="button" id="cyan">
-        <input type="button" id="blue">
-        <input type="button" id="purple">
-        <input type="button" id="pink">
+
+      <div class="pallet">
+        <input type="button">
+        <input type="button">
+        <input type="button">
+        <input type="button">
+        <input type="button">
+        <input type="button">
+        <input type="button">
+        <input type="button">
+        <input type="button">
+        <input type="button">
+
       </div>
     `
-    const white = element.querySelector('#white')
-    white.addEventListener('click', () => {
-      e.ctx.strokeStyle = 'rgb(255, 255, 255)'
-      e.ctx.fillStyle = 'rgb(255, 255, 255)'
-    })
-    const black = element.querySelector('#black')
-    black.addEventListener('click', () => {
-      e.ctx.strokeStyle = 'rgb(0, 0, 0)'
-      e.ctx.fillStyle = 'rgb(0, 0, 0)'
-    })
-    const red = element.querySelector('#red')
-    red.addEventListener('click', () => {
-      e.ctx.strokeStyle = 'rgb(255, 0, 0)'
-      e.ctx.fillStyle = 'rgb(255, 0, 0)'
-    })
-    const orange = element.querySelector('#orange')
-    orange.addEventListener('click', () => {
-      e.ctx.strokeStyle = 'rgb(255, 111, 0)'
-      e.ctx.fillStyle = 'rgb(255, 111, 0)'
-    })
-    const yellow = element.querySelector('#yellow')
-    yellow.addEventListener('click', () => {
-      e.ctx.strokeStyle = 'rgb(255, 247, 0)'
-      e.ctx.fillStyle = 'rgb(255, 247, 0)'
-    })
-    const green = element.querySelector('#green')
-    green.addEventListener('click', () => {
-      e.ctx.strokeStyle = 'rgb(53, 189, 22)'
-      e.ctx.fillStyle = 'rgb(53, 189, 22)'
-    })
-    const cyan = element.querySelector('#cyan')
-    cyan.addEventListener('click', () => {
-      e.ctx.strokeStyle = 'rgb(0, 255, 212)'
-      e.ctx.fillStyle = 'rgb(0, 255, 212)'
-    })
-    const blue = element.querySelector('#blue')
-    blue.addEventListener('click', () => {
-      e.ctx.strokeStyle = 'rgb(0, 145, 255)'
-      e.ctx.fillStyle = 'rgb(0, 145, 255)'
-    })
-    const purple = element.querySelector('#purple')
-    purple.addEventListener('click', () => {
-      e.ctx.strokeStyle = 'rgb(187, 0, 255)'
-      e.ctx.fillStyle = 'rgb(187, 0, 255)'
-    })
-    const pink = element.querySelector('#pink')
-    pink.addEventListener('click', () => {
-      e.ctx.strokeStyle = 'rgb(255, 89, 177)'
-      e.ctx.fillStyle = 'rgb(255, 89, 177)'
+    const colors = [
+      'rgb(255, 255, 255)', // white
+      'rgb(0, 0, 0)', // black
+      'rgb(255, 0, 0)', // red
+      'rgb(255, 111, 0)', // orange
+      'rgb(255, 247, 0)', // yellow
+      'rgb(53, 189, 22)', // green
+      'rgb(0, 255, 212)', // cyan
+      'rgb(0, 145, 255)', // blue
+      'rgb(187, 0, 255)', // purple
+      'rgb(255, 89, 177)' // pink
+    ]
+    element.querySelectorAll('input[type="button"]').forEach((btn, i) => {
+      btn.style.backgroundColor = colors[i]
+      btn.addEventListener('click', () => {
+        e.ctx.strokeStyle = colors[i]
+        e.ctx.fillStyle = colors[i]
+      })
     })
 
     return element
