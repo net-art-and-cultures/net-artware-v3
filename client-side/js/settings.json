@@ -2,12 +2,17 @@
   "version": 1.0,
   "functions": [
     "export",
-    "send"
+    "send",
+    "clear"
   ],
   "tools": [
     "pencil",
     "meatPatty",
-    "veggiePatty"
+    "veggiePatty",
+    "sprinkles",
+    "ketchup",
+    "mustard",
+    "water"
   ],
   "filters": [],
   "options": [
