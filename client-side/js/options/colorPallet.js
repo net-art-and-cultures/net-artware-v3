@@ -25,7 +25,7 @@ window.options.colorPallet = {
       </style>
 
 
-      <div class="pallet">
+      <div class="pallet" style="display: grid;">
         <input type="button">
         <input type="button">
         <input type="button">
