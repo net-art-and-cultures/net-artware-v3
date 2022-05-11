@@ -2,13 +2,18 @@
   "version": 1.0,
   "functions": [
     "export",
-    "send"
+    "send",
+    "clear"
   ],
   "tools": [
     "pencil",
     "meatPatty",
     "veggiePatty",
-    "spiralNoodle"
+    "spiralNoodle",
+    "sprinkles",
+    "ketchup",
+    "mustard",
+    "water"
   ],
   "filters": [],
   "options": [
