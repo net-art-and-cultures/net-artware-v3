@@ -5,14 +5,16 @@ window.options.colorPallet = {
     element.innerHTML = `
       <style>
         .pallet {
-          display: block;
-          grid-template-columns: repeat(1, 1fr);
+          position: relative;
+          bottom: 7px;
+          grid-template-columns: repeat(5, 1fr);
           gap: 5px;
+          padding: 10px;
         }
         input[type="button"] {
           width: 25px;
           height: 25px;
-          margin: 5px 0 0 5px;
+          margin: 0 0 0 5px;
           border: 2px solid black;
           border-radius: 50%;
         }
@@ -22,7 +24,8 @@ window.options.colorPallet = {
 
       </style>
 
-      <div class="pallet">
+
+      <div class="pallet" style="display: grid;">
         <input type="button">
         <input type="button">
         <input type="button">
@@ -33,6 +36,7 @@ window.options.colorPallet = {
         <input type="button">
         <input type="button">
         <input type="button">
+
       </div>
     `
     const colors = [
