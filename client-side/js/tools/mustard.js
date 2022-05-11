@@ -4,7 +4,7 @@ window.tools.mustard = {
   state: {
     selected: false,
     mousePressed: false,
-    size: 10
+    drops: 1
   },
 
   events: {
@@ -13,21 +13,20 @@ window.tools.mustard = {
     },
     mouseup: function (e) {
       e.state.mousePressed = false
-      e.state.size += 1
+      e.state.drops = Math.random() * 1 + 10
     },
     mousemove: function (e) {
       if (e.state.selected && e.state.mousePressed) {
-        // const mouse = e.app.eventToMouse(e)
-        const px = e.state.prevMouse.x || e.mouse.x
-        const py = e.state.prevMouse.y || e.mouse.y
-        const radius = e.state.size
-        e.ctx.strokeStyle = 'yellow'
-        e.ctx.beginPath()
-        e.ctx.ellipse(py, px, radius, radius - 10, Math.pi, 90, Math.pi)
-        e.ctx.fillStyle = 'yellow'
-        e.ctx.fill()
-        e.ctx.closePath()
-        e.ctx.stroke()
+        for (let i = 0; i < e.state.drops; i++) {
+          const radius = Math.random() * 5
+          const x = e.mouse.x + (Math.random() * 10 - 5)
+          const y = e.mouse.y + (Math.random() * 20 - 10)
+          e.ctx.beginPath()
+          e.ctx.arc(x, y - 10, radius, radius - 20, Math.PI, 0, Math.PI / 2)
+          e.ctx.fillStyle = 'rgba(219, 162, 4, 0.2)'
+          e.ctx.fill()
+          e.ctx.closePath()
+        }
       }
     }
   }
