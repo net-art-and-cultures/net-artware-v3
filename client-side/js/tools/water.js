@@ -20,11 +20,11 @@ window.tools.water = {
         // const mouse = e.app.eventToMouse(e)
         for (let i = 0; i < e.state.drops; i++) {
           const radius = Math.random() * 10 + 5
-          const x = e.mouse.x + (Math.random() * 20 - 10)
-          const y = e.mouse.y + (Math.random() * 20 - 10)
+          const x = e.mouse.x + (Math.random() * 35 - 10)
+          const y = e.mouse.y + (Math.random() * 30 - 10)
           e.ctx.beginPath()
           e.ctx.arc(x, y, radius, radius - 10, Math.PI, 90, Math.PI)
-          e.ctx.fillStyle = 'rgba(0, 0, 255, 0.5)'
+          e.ctx.fillStyle = 'rgba(0, 0, 255, 0.1)'
           e.ctx.fill()
           e.ctx.closePath()
         }
