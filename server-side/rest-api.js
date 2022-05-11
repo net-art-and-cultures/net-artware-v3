@@ -8,7 +8,7 @@ const metadata = new grpc.Metadata() // used to authenticate
 metadata.set('authorization', 'Key d9c28c50aab0499cb6c8c413b3f264d4') // API key from emris' Clarafai acct food-test application
 const apiKey = '756c19d994a3497a82093e3b4bbe91fe' // Spoontacular API key
 
-router.use(bodyParser.json())
+router.use(bodyParser.json({ limit: '50mb' }))
 
 module.exports = router
 
