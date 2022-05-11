@@ -4,32 +4,29 @@ window.tools.ketchup = {
   state: {
     selected: false,
     mousePressed: false,
-    size: 10,
-    prevMouse: { x: null, y: null }
+    drops: 5
   },
 
   events: {
     mousedown: function (e) {
       e.state.mousePressed = true
-      e.state.size += 1
     },
     mouseup: function (e) {
       e.state.mousePressed = false
-      e.state.prevMouse = { x: null, y: null }
+      e.state.drops = Math.random() * 5 + 5
     },
     mousemove: function (e) {
       if (e.state.selected && e.state.mousePressed) {
-        const mouse = e.app.eventToMouse(e)
-        const px = e.state.prevMouse.x || e.mouse.x
-        const py = e.state.prevMouse.y || e.mouse.y
-        e.ctx.strokeStyle = 'red'
-        e.ctx.beginPath()
-        e.ctx.ellipse(mouse.x, mouse.y, px, py, Math.pi / 4, 0, Math.pi)
-        e.ctx.fillStyle = 'red'
-        e.ctx.fill()
-        e.ctx.closePath()
-        e.ctx.stroke()
-        e.state.prevMouse = { x: mouse.x, y: mouse.y }
+        for (let i = 0; i < e.state.drops; i++) {
+          const radius = Math.random() * 5 + 5
+          const x = e.mouse.x + (Math.random() * 10 - 5)
+          const y = e.mouse.y + (Math.random() * 20 - 5)
+          e.ctx.beginPath()
+          e.ctx.arc(x, y - 10, radius, radius - 20, Math.PI / 4, 45, Math.PI)
+          e.ctx.fillStyle = 'rgba(161, 11, 0,0.5)'
+          e.ctx.fill()
+          e.ctx.closePath()
+        }
       }
     }
   }

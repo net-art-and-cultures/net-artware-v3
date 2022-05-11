@@ -7,15 +7,12 @@
   ],
   "tools": [
     "pencil",
-<<<<<<< HEAD
+    "meatPatty",
+    "veggiePatty",
     "eraser",
     "ketchup",
     "mustard",
     "water"
-=======
-    "meatPatty",
-    "veggiePatty"
->>>>>>> 7325f9903a5328880c7fecdfa808770db1174feb
   ],
   "filters": [],
   "options": [
